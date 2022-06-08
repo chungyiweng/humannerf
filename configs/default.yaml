@@ -1,0 +1,134 @@
+category: 'human_nerf'
+
+
+##############################################3
+## Network Specs
+
+# modules
+network_module: 'core.nets.human_nerf.network'
+trainer_module: 'core.train.trainers.human_nerf.trainer'
+lr_updater_module: 'core.train.trainers.human_nerf.lr_updaters.exp_decay'
+optimizer_module: 'core.train.optimizers.human_nerf.optimizer'
+
+# positional embedder -- canonical mlp
+embedder:
+  module: "core.nets.human_nerf.embedders.fourier"
+
+# positional embedder -- non-rigid motion mlp
+non_rigid_embedder:
+  module: "core.nets.human_nerf.embedders.hannw_fourier"
+
+# canonical mlp
+canonical_mlp:
+  module: 'core.nets.human_nerf.canonical_mlps.mlp_rgb_sigma'
+  mlp_depth: 8         # layers in network
+  mlp_width: 256       # channels per layer
+  multires: 10         # log2 of max freq for positional encoding (3D location)
+  i_embed: 0           # set 0 for default positional encoding, -1 for none
+
+# motion weights volume
+mweight_volume:
+  module: 'core.nets.human_nerf.mweight_vol_decoders.deconv_vol_decoder'
+  embedding_size: 256
+  volume_size: 32
+  dst_voxel_size: 0.0625
+
+# non-rigid motion mlp
+non_rigid_motion_mlp:
+  module: 'core.nets.human_nerf.non_rigid_motion_mlps.mlp_offset'
+  condition_code_size: 69
+  mlp_width: 128
+  mlp_depth: 6
+  skips: [4]
+  multires: 6       # log2 of max freq for positional encoding (3D location)
+  i_embed: 0        # set 0 for default positional encoding, -1 for none
+  kick_in_iter: 10000
+  full_band_iter: 50000
+
+# pose decoder
+pose_decoder:
+  module: 'core.nets.human_nerf.pose_decoders.mlp_delta_body_pose'
+  embedding_size: 69
+  mlp_width: 256
+  mlp_depth: 4
+
+
+##############################################3
+## Data Configuration
+
+train_keyfilter: ['rays',
+                  'motion_bases', 'motion_weights_priors',
+                  'cnl_bbox', 'dst_posevec_69']
+test_keyfilter: ['rays', 'target_rgbs', 
+                 'motion_bases', 'motion_weights_priors',
+                  'cnl_bbox', 'dst_posevec_69']
+
+train:
+  perturb: 1.        # only for training, set to 0. for no jitter, 1. for jitter
+  batch_size: 1
+  shuffle: True
+  drop_last: False
+  maxiter: 400000
+  lr: 0.0005  # 5e-4
+  lr_mweight_vol_decoder: 0.00005 # 5e-5
+  lr_pose_decoder: 0.00005        # 5e-5
+  lr_non_rigid_mlp: 0.00005       # 5e-5
+  lrate_decay: 500
+  optimizer: 'adam'
+  log_interval: 20
+  save_checkpt_interval: 2000
+  save_model_interval: 50000
+  ray_shoot_mode: 'patch'
+  lossweights:
+    lpips: 1.0
+    mse: 0.2
+
+
+progress:
+  batch_size: 1
+  shuffle: False
+  drop_last: False
+  dump_interval: 5000
+
+movement:
+  batch_size: 1
+  shuffle: False
+  drop_last: False
+
+freeview:
+  batch_size: 1
+  shuffle: False
+  drop_last: False
+  frame_idx: 0
+
+tpose:
+  batch_size: 1
+  shuffle: False
+  drop_last: False
+
+
+##############################################3
+## Misc
+
+sex: 'neutral'
+total_bones: 24
+bbox_offset: 0.3
+
+load_net: latest
+save_all: True    # save all checkpoints
+
+patch:
+  sample_subject_ratio: 0.8
+  N_patches: 6
+  size: 32      # [Patch] size of patch
+
+N_samples: 128      # number of samples for each ray in coarse ray matching
+
+perturb: 1.        # only for training, set to 0. for no jitter, 1. for jitter
+
+netchunk_per_gpu: 300000 # number of pts sent through network in parallel, decrease if running out of memory
+chunk: 32768   # 32768=1024*32, number of rays processed in parallel, decrease if running out of memory
+n_gpus: 1
+
+show_alpha: False  
+show_truth: False

@@ -1,0 +1,42 @@
+task: 'wild'
+subject: 'monocular'
+experiment: 'adventure'
+
+##############################################3
+## Network Specs
+
+# non-rigid motion mlp
+non_rigid_motion_mlp:
+  kick_in_iter: 100000
+  full_band_iter: 200000
+
+# pose decoder
+pose_decoder:
+  kick_in_iter: 20000
+
+##############################################3
+## Data Configuration
+
+train:
+  dataset_module: 'core.data.human_nerf.train'
+  dataset: 'monocular_train'
+
+progress:
+  dataset_module: 'core.data.human_nerf.train'
+  dataset: 'monocular_test'
+
+movement:
+  dataset_module: 'core.data.human_nerf.train'
+  dataset: 'monocular_test'
+
+freeview:
+  dataset_module: 'core.data.human_nerf.freeview'
+  dataset: 'monocular_test'
+
+tpose:
+  dataset_module: 'core.data.human_nerf.tpose'
+  dataset: 'monocular_test'
+
+
+bgcolor: [255., 255., 255.]
+resize_img_scale: 0.5

@@ -1,0 +1,11 @@
+dataset:
+  zju_mocap_path: /data/dataset/zju_mocap
+  subject: '390'
+  sex: 'neutral'
+
+training_view: 0
+max_frames: -1
+
+output:
+  dir: ../../dataset/zju_mocap
+  name: '390'

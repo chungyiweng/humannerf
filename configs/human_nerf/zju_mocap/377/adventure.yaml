@@ -1,0 +1,30 @@
+task: 'zju_mocap'
+subject: 'p377'
+experiment: 'adventure'
+
+##############################################3
+## Data Configuration
+
+train:
+  dataset_module: 'core.data.human_nerf.train'
+  dataset: 'zju_377_train'
+
+progress:
+  dataset_module: 'core.data.human_nerf.train'
+  dataset: 'zju_377_test'
+
+movement:
+  dataset_module: 'core.data.human_nerf.train'
+  dataset: 'zju_377_test'
+
+freeview:
+  dataset_module: 'core.data.human_nerf.freeview'
+  dataset: 'zju_377_test'
+
+tpose:
+  dataset_module: 'core.data.human_nerf.tpose'
+  dataset: 'zju_377_test'
+  
+
+bgcolor: [0., 0., 0.]
+resize_img_scale: 0.5

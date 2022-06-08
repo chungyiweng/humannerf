@@ -1,0 +1,11 @@
+dataset:
+  zju_mocap_path: /data/dataset/zju_mocap
+  subject: '313'
+  sex: 'neutral'
+
+training_view: 0
+max_frames: 1000
+
+output:
+  dir: ../../dataset/zju_mocap
+  name: '313'
