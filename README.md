@@ -219,14 +219,16 @@ The implementation took reference from [NeRF-PyTorch](https://github.com/yenchen
 If you find our work useful, please consider citing:
 
 ```BibTeX
-@article{weng2022humannerf,
-  title   = {Human{N}e{RF}: Free-viewpoint Rendering of Moving People from Monocular Video},
-  author  = {Weng, Chung-Yi and 
-             Curless, Brian and 
-             Srinivasan, Pratul P. and 
-             Barron, Jonathan T. and 
-             Kemelmacher-Shlizerman, Ira},
-  journal = {CVPR},
-  year    = {2022},
+@InProceedings{weng_humannerf_2022_cvpr,
+    title     = {Human{N}e{RF}: Free-Viewpoint Rendering of Moving People From Monocular Video},
+    author    = {Weng, Chung-Yi and 
+                 Curless, Brian and 
+                 Srinivasan, Pratul P. and 
+                 Barron, Jonathan T. and 
+                 Kemelmacher-Shlizerman, Ira},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2022},
+    pages     = {16210-16220}
 }
 ```
