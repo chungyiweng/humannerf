@@ -66,6 +66,8 @@ Finally, run the data preprocessing script.
 Now you can either download a pre-trained model by running the script.
 
     ./scripts/download_model.sh 387
+    
+ #https://drive.google.com/uc?id=1LS_Ocw8LjHAlBalHNtJJSS0aHJqc3TKR
 
 or train a model by yourself. We used 4 GPUs (NVIDIA RTX 2080 Ti) to train a model. 
 
