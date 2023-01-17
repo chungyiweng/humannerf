@@ -39,12 +39,15 @@ Below we take the subject 387 as a running example.
 ### `Prepare a dataset`
 
 First, download ZJU-Mocap dataset from [here](https://github.com/zju3dv/neuralbody/blob/master/INSTALL.md#zju-mocap-dataset). 
+the dataset should be placed under `tools/prepare_zju_mocap`
 
 Second, modify the yaml file of subject 387 at `tools/prepare_zju_mocap/387.yaml`. In particular,  `zju_mocap_path` should be the directory path of the ZJU-Mocap dataset.
 
+eg data/dataset/CoreView_387
+
 ```
 dataset:
-    zju_mocap_path: /path/to/zju_mocap
+    zju_mocap_path: /path/to/zju_mocap (line2)
     subject: '387'
     sex: 'neutral'
 
@@ -54,6 +57,7 @@ dataset:
 Finally, run the data preprocessing script.
 
     cd tools/prepare_zju_mocap
+    pip3 install git+https://github.com/scottandrews/chumpy.git@fe51783e0364bf1e9b705541e7d77f894dd2b1ac
     python prepare_dataset.py --cfg 387.yaml
     cd ../../
 
