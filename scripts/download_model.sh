@@ -4,12 +4,12 @@ set -e
 
 # Google drive links for pretrained models
 declare -A gdrive_links
-gdrive_links[377]=1QIBo5gKsrr9rohE0fex22kV0OJLaICUh
-gdrive_links[386]=1WDZ9kLph43bLRv0eQB9iFkNYXE8RELZP
-gdrive_links[387]=1LS_Ocw8LjHAlBalHNtJJSS0aHJqc3TKR
-gdrive_links[392]=1dLUjpE_bN322S9U1isC8jHHged_Uf-rO
-gdrive_links[393]=1dYcm4IWpV-UeXbjKlZYcZ1WTvg3KlJys
-gdrive_links[394]=1fcJ0wAcm1Zk-Z_IBLTOPbPoHOgFc7rPZ
+gdrive_links[377]=1kOZAdI5Qz9mTIfoM5MutZ23fzm_6_ZCr
+gdrive_links[386]=1ecc7co8xRZsuUBELjaMSSdE50EB3iKsw
+gdrive_links[387]=1WQoGgKxG2_wSMe0oPPWvSqQiNby0_uVH
+gdrive_links[392]=1keEyz-tcr8ICHyRQ-WA42S_NzBvAvXVs
+gdrive_links[393]=1m-No-69WBBsmCwsU2EQJr5x6AeIp_vUY
+gdrive_links[394]=10S0iCr3KP2L6DGpqMjZ72sLp4H15FLGF
 
 # Download the model
 SUBJECT=$1
